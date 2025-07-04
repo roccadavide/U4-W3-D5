@@ -1,16 +1,14 @@
 package daviderocca.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
 public class Utente {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String nome;
@@ -22,6 +20,9 @@ public class Utente {
 
     @Column(name = "numero_di_tessera", nullable = false, unique = true)
     private int numeroDiTessera;
+
+    public Utente() {
+    }
 
     public Utente(String nome, String cognome, LocalDate dataDiNascita, int numeroDiTessera) {
         this.nome = nome;

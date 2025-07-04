@@ -8,14 +8,15 @@ import java.time.LocalDate;
 public class Prestito {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @ManyToOne
+    @JoinColumn(name = "utente_id")
     private Utente utente;
 
     @ManyToOne
-    @Column(name = "elemento_prestato")
+    @JoinColumn(name = "testo_id")
     private Testo elementoPrestato;
 
     @Column(name = "data_inizio_prestito")
@@ -26,6 +27,9 @@ public class Prestito {
 
     @Column(name = "data_restituzione_effettiva")
     private LocalDate dataRestituzioneEffettiva;
+
+    public Prestito() {
+    }
 
     public Prestito(Utente utente, Testo elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
         this.utente = utente;

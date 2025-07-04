@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 import java.time.Year;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Testo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
     @Column(name = "codice_isbn")
@@ -23,8 +23,12 @@ public abstract class Testo {
     @Column(name = "numero_pagine")
     protected int numeroPagine;
 
-    public Testo(String codiceISBN, Year annoDiPubblicazione, int numeroPagine) {
+    public Testo() {
+    }
+
+    public Testo(String codiceISBN, String titolo, Year annoDiPubblicazione, int numeroPagine) {
         this.codiceISBN = codiceISBN;
+        this.titolo = titolo;
         this.annoDiPubblicazione = annoDiPubblicazione;
         this.numeroPagine = numeroPagine;
     }

@@ -14,10 +14,14 @@ public class Libro extends Testo{
     private String autore;
 
     @Column(name = "genere_libro")
+    @Enumerated(EnumType.STRING)
     private GenereLibro genereLibro;
 
-    public Libro(String codiceISBN, Year annoDiPubblicazione, int numeroPagine, String autore, GenereLibro genereLibro) {
-        super(codiceISBN, annoDiPubblicazione, numeroPagine);
+    public Libro() {
+    }
+
+    public Libro(String codiceISBN, String titolo, Year annoDiPubblicazione, int numeroPagine, String autore, GenereLibro genereLibro) {
+        super(codiceISBN, titolo, annoDiPubblicazione, numeroPagine);
         this.autore = autore;
         this.genereLibro = genereLibro;
     }

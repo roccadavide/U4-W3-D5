@@ -1,17 +1,22 @@
 package daviderocca.entities;
 
 import daviderocca.enums.PeriodicitàRivista;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 import java.time.Year;
 
+@Entity
 public class Rivista extends Testo{
 
     protected PeriodicitàRivista periodicitàRivista;
 
-    public Rivista(String codiceISBN, Year annoDiPubblicazione, int numeroPagine, PeriodicitàRivista periodicitàRivista) {
-        super(codiceISBN, annoDiPubblicazione, numeroPagine);
+    public Rivista() {
+    }
+
+    public Rivista(String codiceISBN, String titolo, Year annoDiPubblicazione, int numeroPagine, PeriodicitàRivista periodicitàRivista) {
+        super(codiceISBN, titolo, annoDiPubblicazione, numeroPagine);
         this.periodicitàRivista = periodicitàRivista;
     }
 
