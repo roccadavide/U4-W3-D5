@@ -127,16 +127,59 @@ public class Application {
 
         //RICERCA PER ANNO
 
-        List<Testo> testiDel2020 = td.findByPubblicationYear(Year.of(1992));
+        List<Testo> testiDel1992 = td.findByPubblicationYear(Year.of(1992));
 
-        if (testiDel2020.isEmpty()) {
-            System.out.println("Nessun testo trovato per l'anno 2020.");
+        if (testiDel1992.isEmpty()) {
+            System.out.println("Nessun testo trovato per l'anno 1992.");
         } else {
-            System.out.println("Testi trovati per l'anno 2020:");
-            testiDel2020.forEach(System.out::println);
+            System.out.println("Testi trovati per l'anno 1992:");
+            testiDel1992.forEach(System.out::println);
         }
 
         //RICERCA PER AUTORE
+
+        List<Libro> testiDiSaviano = td.findByAuthor("Roberto Saviano");
+
+        if (testiDiSaviano.isEmpty()) {
+            System.out.println("Nessun libro trovato di Saviano.");
+        } else {
+            System.out.println("Libri trovati scritti da Saviano:");
+            testiDiSaviano.forEach(System.out::println);
+        }
+
+        //RICERCA PER TITOLO O PARTE DI ESSO
+
+
+        List<Testo> libroConTitolo = td.findByTitleOrLetters("na");
+
+        if (libroConTitolo.isEmpty()) {
+            System.out.println("Nessun testo trovato con quel titolo o lettere.");
+        } else {
+            System.out.println("Testi trovati con titolo o lettere inserite:");
+            libroConTitolo.forEach(System.out::println);
+        }
+
+        //RICERCA DEGLI ELEMENTI ATTUALEMNTE IN PRESTITO DATO UN NUMERO DI TESSERA UTENTE
+
+        List<Prestito> testoPrestatoA = pd.findBorrowedItemByUserCard(326);
+
+        if (testoPrestatoA.isEmpty()) {
+            System.out.println("Nessun testo trovato prestato a quel numero di tessera.");
+        } else {
+            System.out.println("Testi trovati prestati a quel numero di tessera:");
+            testoPrestatoA.forEach(System.out::println);
+        }
+
+        //RICERCA DI TUTTI I PRESTITI SCADUTI E NON A ANCORA RESTITUITI
+
+        List<Prestito> testoPrestitoScaduto = pd.findExpiredBorrows();
+
+        if (testoPrestitoScaduto.isEmpty()) {
+            System.out.println("Nessun testo dimenticato dai clienti.");
+        } else {
+            System.out.println("Testi trovati con scadenza oltrepassata:");
+            testoPrestitoScaduto.forEach(System.out::println);
+        }
 
 
 
